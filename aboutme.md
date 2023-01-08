@@ -1,16 +1,19 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: If you wish for it, it will come true
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Daegeun Ha. I have the following qualities:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
 
-What else do you need?
+* I'm extremely loyal to my family
+* I have responsibility for my work
+* I'm a better person than yesterday
 
-### My story
+If you have any question for me, feel free to contact me.
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+### Plan
+
+I'll upload a post at least 2 on week.
+Firstly, it'll be about the book _**Clean Code**_

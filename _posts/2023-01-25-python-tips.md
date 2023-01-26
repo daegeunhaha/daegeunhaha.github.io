@@ -21,9 +21,8 @@ python 코드를 짜다보면 typing 때문이건, 그냥이건 circular import�
 
 ### Python import 방법
 
+[python import](https://jins-sw.tistory.com/17)
 python에서 import 시에, 두 가지를 알아야 한다.  
 
 1. python import는 실행되는 main file(entry point)의 위치를 기준으로 한다.
 2. python library는 몇 가지 경로에 의해 결정된다.
-
-도움이 많이 된 posting이 있었는데 어디있는지 모르겠다. 회사에서 찾아보고 기록해두어야겠다.

@@ -14,3 +14,8 @@ python type hint는 유용하지만, 일종의 주석 같은 역할이다. 코�
 article을 다 읽은 후 내 생각을 다시 정리해보겠다.
 
 [12 Beginner Concepts About Type Hints To Improve Your Python Code](https://towardsdatascience.com/12-beginner-concepts-about-type-hints-to-improve-your-python-code-90f1ba0ac49)
+
+아래는 Type hint를 조금 더 깊게 쓸 수 있는 방법들이다. 참고하길 추천한다. (기회가 되면 따로 포스팅을 통해 정리해두는 것도 좋겠다.)
+
+[파이썬 Typing 파헤치기 - 기초편](https://sjquant.tistory.com/68)
+[파이썬 Typing 파헤치기 - 심화편](https://sjquant.tistory.com/69)

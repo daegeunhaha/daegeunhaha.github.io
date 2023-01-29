@@ -41,7 +41,10 @@ from typing import TypeVar
 T = TypeVar('T')
 ```
 
-라고 하면 아래 클래스 혹은 함수에서 T라는 Type Variable을 사용 가능하게 한다.
+라고 하면 아래 클래스 혹은 함수에서 T라는 Type Variable을 사용 가능하게 한다.  
+참고로, TypeVar initialize할 때 사용하는 str 'T'는 변수명으로 사용할 T와 같지 않으면 에러가 난다;
+
+[해당 에러를 발생시키게 한 PR](https://github.com/PyCQA/pylint/issues/5224)
 
 TypeVar는 다음과 같이도 사용 가능하다.
 

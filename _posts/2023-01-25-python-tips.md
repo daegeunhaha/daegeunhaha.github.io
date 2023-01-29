@@ -26,3 +26,36 @@ python에서 import 시에, 두 가지를 알아야 한다.
 
 1. python import는 실행되는 main file(entry point)의 위치를 기준으로 한다.
 2. python library는 몇 가지 경로에 의해 결정된다.
+
+### Python typing
+
+python에는 static type hint를 제공해줄 수 있는 typing 이라는 모듈이 존재한다.
+
+#### TypeVar
+
+Generic Type을 표현 가능하게 하는 것이 TypeVar이다. 예를 들어,
+
+```python
+from typing import TypeVar
+
+T = TypeVar('T')
+```
+
+라고 하면 아래 클래스 혹은 함수에서 T라는 Type Variable을 사용 가능하게 한다.
+
+TypeVar는 다음과 같이도 사용 가능하다.
+
+```python
+T = TypeVar('T') # Can be anything
+S = TypeVar('S', bound=str) # Can be any subtype of str
+A = TypeVar('A', str, bytes) # Must be exactly str or bytes
+```
+
+### mypy, pylint
+
+mypy는 python에서 static type 검사를 해주며,  
+pylint는 PEP-8 같은 coding style 가이드를 따랐는지를 알려준다.
+
+두 모듈 모두 pip install mypy, pip install pylint를 통해 설치 가능하며,  
+mypy는 특정 파일, 또는 폴더에 대해 검사가 가능하며  
+pylint의 경우에는 폴더를 지정 가능하지만 \_\_init\_\_.py 파일이 있어야 해당 폴더에 대한 검사가 가능하다.

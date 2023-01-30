@@ -54,6 +54,48 @@ S = TypeVar('S', bound=str) # Can be any subtype of str
 A = TypeVar('A', str, bytes) # Must be exactly str or bytes
 ```
 
+#### Typing for subclass
+
+위의 TypeVar는 Generic Type 변수 하나에 대해, bound를 쓴다 해도 해당 변수가 될 수 있는 한계를 정해놓은 거라고 한다면,  
+함수 내에서 해당 Type의 subtype을 나타낼 때에는 type\[A\]로 쓴다.
+
+[관련한 mypy 공식 document](https://mypy.readthedocs.io/en/latest/kinds_of_types.html#the-type-of-class-objects)
+
+예를 들어, 아래와 같이 사용할 수 있다.
+
+```python
+from typing import TypeVar
+
+U = TypeVar('U', bound='User')
+
+class User:
+    # Defines fields like name, email
+    def name(self):
+        """return user name"""
+
+class BasicUser(User):
+    def upgrade(self):
+        """Upgrade to Pro"""
+
+class ProUser(User):
+    def pay(self):
+        """Pay bill"""
+
+def new_user(user_class: type[U]) -> U:
+    user = user_class()
+    # (Here we could write the user object to a database)
+    return user
+
+buyer = new_user(ProUser)
+buyer.name()  # buyer can be a ProUser or superclass of ProUser
+```
+
+이렇게 하면, new_user에서 user_class로 들어오는 parameter가 ProUser이라고 하면,  
+해당 함수의 return type은 ProUser의 superclass, 혹은 같은 class이어야만 하는 것이다.
+
+따라서, buyer.pay()라는 호출을 할 수 있게 된다.  
+당연하게도, buyer.upgrade()를 하면 에러가 나며, buyer.name()도 허용 가능하다.
+
 ### mypy, pylint
 
 mypy는 python에서 static type 검사를 해주며,  

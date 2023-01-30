@@ -15,6 +15,13 @@ article을 다 읽은 후 내 생각을 다시 정리해보겠다.
 
 [12 Beginner Concepts About Type Hints To Improve Your Python Code](https://towardsdatascience.com/12-beginner-concepts-about-type-hints-to-improve-your-python-code-90f1ba0ac49)
 
+위 Article에서 variable type hint 활용에 대한 답은 얻지 못했고, TypedDict가 유용하다는 건 알게 되었다.  
+(TypedDict는 Dict 안에 Key, Value type이 mix 되어 있을 때 활용 가능하다.)
+
+더 알아보기는 어려우니, 우선 생각을 정리해두어야겠다. 일반 variable까지 일단 typing을 적용해보자.  
+그러고 나서 느낀 점을 posting해보는 것도 좋을 것 같다.  
+당장은 tdd 예제에서부터 시작해보려 한다.
+
 아래는 python typing 관련한 official document이다.
 [typing — 형 힌트 지원](https://docs.python.org/ko/3/library/typing.html#module-typing)
 

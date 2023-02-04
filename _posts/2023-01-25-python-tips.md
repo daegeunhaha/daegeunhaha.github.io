@@ -96,6 +96,17 @@ buyer.name()  # buyer can be a ProUser or superclass of ProUser
 따라서, buyer.pay()라는 호출을 할 수 있게 된다.  
 당연하게도, buyer.upgrade()를 하면 에러가 나며, buyer.name()도 허용 가능하다.
 
+**주의해야 할 점**이 있다.  
+위의 예제에서, new_user의 argument로 ProUser를 넣어줬다. 이건 ProUser의 instance를 넣어준 게 아니고, ProUser라는 class를 넣어준 것이다.  
+만약에, User라는 class를 상속하는 class의 instance를 넣고 싶다면, 다음과 같은 것으로도 충분하다.
+
+```python
+def user_type_test(user: User) -> None:
+    user.upgrade()
+
+user_type_test(ProUser())
+```
+
 ### mypy, pylint
 
 mypy는 python에서 static type 검사를 해주며,  

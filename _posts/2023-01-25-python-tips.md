@@ -107,6 +107,22 @@ def user_type_test(user: User) -> None:
 user_type_test(ProUser())
 ```
 
+function의 return type이 super class이고, 실제 variable assignment는 그것의 sub class일 때,  
+그냥 type hint를 적으면 mypy에서 오류를 낸다.  
+이 때는, cast를 활용하는 것이 현재 내가 찾은 가장 좋은 방법이다.  
+다만, 이 자체는 code smell이라고 한다. 이런 식으로 명시적으로 형변환을 해서 써야 하는 경우는 좋지 않고,  
+superclass type으로 활용할 수 있도록 코드를 짜는 것이 좋을 것 같다.  (모든 sub class에 해당 method를 꼭 구현하는 식으로)
+
+```python
+from typing import cast
+
+def test() -> SuperClass:
+    return SubClass()
+
+subClass: SubClass = test() # wrong
+subClass: SubClass = cast(SubClass, test()) # good
+```
+
 ### mypy, pylint
 
 mypy는 python에서 static type 검사를 해주며,  

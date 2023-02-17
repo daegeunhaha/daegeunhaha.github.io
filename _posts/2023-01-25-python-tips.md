@@ -136,3 +136,8 @@ pylint는 PEP-8 같은 coding style 가이드를 따랐는지를 알려준다.
 두 모듈 모두 pip install mypy, pip install pylint를 통해 설치 가능하며,  
 mypy는 특정 파일, 또는 폴더에 대해 검사가 가능하며  
 pylint의 경우에는 폴더를 지정 가능하지만 \_\_init\_\_.py 파일이 있어야 해당 폴더에 대한 검사가 가능하다.
+
+### pytest test 함수 명
+
+test_*.py or \*_test.py in the current directory and its subdirectories.  
+라고 한다.

@@ -141,3 +141,26 @@ pylint의 경우에는 폴더를 지정 가능하지만 \_\_init\_\_.py 파일�
 
 test_*.py or \*_test.py in the current directory and its subdirectories.  
 라고 한다.
+
+### -m 실행 옵션과 \_\_name\_\_이란?
+
+[-m 실행 옵션과 \_\_name\_\_](https://jins-sw.tistory.com/22)
+
+#### \_\_name\_\_
+
+python script.py 처럼 바로 실행시키면 \_\_name\_\_이 \_\_main\_\_ 이 되고,  
+다른 곳에서 import script 이렇게 import 하면 \_\_name\_\_이 script가 된다.
+
+#### -m option
+
+-m option은 sys.path에서 해당 module을 찾아서 실행을 시키라는 의미이다.  
+따라서 현재 폴더에 script.py가 있을 경우, 다음과 같이도 실행 가능하다.
+
+```bash
+python -m script
+```
+
+왜냐하면, 위와 같이 실행시키면 현재..  
+어라 좀 헷갈린다. -m option은 sys.path에서 script라는 모듈을 찾을 건데,  
+script라는 모듈을 찾은 뒤에야 해당 스크립트를 실행시키면서 sys.path에 script.py가 위치한 곳이 등록이 될 것이기 때문이다.  
+조금 더 deep dive해서 알아 봐야겠다.

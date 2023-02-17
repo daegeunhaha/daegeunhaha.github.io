@@ -19,13 +19,18 @@ python 코드를 짜다보면 typing 때문이건, 그냥이건 circular import�
 2. typing 꼼수
     * typing시 실제 class 대신 class의 string을 사용할 수 있다. mypy 사용 시에 type checking이 가능하도록 한다.
 
-### Python import 방법
+### Python import 방법 (+ sys.path)
 
 [python import](https://jins-sw.tistory.com/17)
-python에서 import 시에, 두 가지를 알아야 한다.  
 
-1. python import는 실행되는 main file(entry point)의 위치를 기준으로 한다.
-2. python library는 몇 가지 경로에 의해 결정된다.
+python script에서 import를 수행 시, package화하여 python 내부 library로 만들어놓은 게 아니라 local한 다른 package를 참조하는 경우,  
+import 경로를 어떻게 적어야 하나 고민이 된다.
+
+이 때에는 main 함수(entry point script)를 실행하는 위치를 기준으로 import 경로를 적어주면 된다.
+
+좀 더 자세히 들여다보자면,  
+python main.py 과 같은 방식으로 script를 실행 시켰다면, 내부적으로는 sys.path에 main.py 파일이 위치한 곳을 sys.path에 추가해준다.  
+**해당 command를 실행 시킨 곳이 아니라, 최초로 실행된 script가 위치한 곳**이라는 것을 명심한다.
 
 ### Python typing
 

@@ -19,18 +19,57 @@ python 코드를 짜다보면 typing 때문이건, 그냥이건 circular import�
 2. typing 꼼수
     * typing시 실제 class 대신 class의 string을 사용할 수 있다. mypy 사용 시에 type checking이 가능하도록 한다.
 
+### Python sys.path
+
+참고: [https://docs.python.org/3/library/sys.html](https://docs.python.org/3/library/sys.html)
+
+python 내에서 sys.path란, module을 찾는 search path이다.  
+PYTHONPATH environment variable 로부터 초기화된다.
+
+기본적으로, program startup 시기에, potentially unsafe path(docu의 용어에 의하면)가 sys.path에 prepend 된다.
+
+* python -m module command line: prepend the current working directory.
+* python script.py command line: prepend the script’s directory. If it’s a symbolic link, resolve symbolic links.
+* python -c code and python (REPL) command lines: prepend an empty string, which means the current working directory.
+
 ### Python import 방법 (+ sys.path)
 
 [python import](https://jins-sw.tistory.com/17)
 
-python script에서 import를 수행 시, package화하여 python 내부 library로 만들어놓은 게 아니라 local한 다른 package를 참조하는 경우,  
+python script에서 import를 수행 시, package화하여 python 내부 library로 만들어놓은 게 아니라 local한 다른 경로를 참조하는 경우,  
 import 경로를 어떻게 적어야 하나 고민이 된다.
 
-이 때에는 main 함수(entry point script)를 실행하는 위치를 기준으로 import 경로를 적어주면 된다.
+이 때에는 main 함수(entry point script)를 실행하는 위치를 기준으로 import 경로를 적어주면 된다.  
+python -m 로 실행을 시킨 경우는 어떨까?  
+sys.path에는 현재 directory가 들어가 있을 것이다.  
+그러니까, main 함수를 기준으로 import를 수행해두었고, main 함수를 call하였다면 문제가 생기지 않을 것이다.
 
 좀 더 자세히 들여다보자면,  
 python main.py 과 같은 방식으로 script를 실행 시켰다면, 내부적으로는 sys.path에 main.py 파일이 위치한 곳을 sys.path에 추가해준다.  
 **해당 command를 실행 시킨 곳이 아니라, 최초로 실행된 script가 위치한 곳**이라는 것을 명심한다.
+
+### -m 실행 옵션과 \_\_name\_\_이란?
+
+[-m 실행 옵션과 \_\_name\_\_](https://jins-sw.tistory.com/22)
+
+#### \_\_name\_\_
+
+python script.py 처럼 바로 실행시키면 \_\_name\_\_이 \_\_main\_\_ 이 되고,  
+다른 곳에서 import script 이렇게 import 하면 \_\_name\_\_이 script가 된다.
+
+#### -m option
+
+-m option은 sys.path에서 해당 module을 찾아서 실행을 시키라는 의미이다.  
+따라서 현재 폴더에 script.py가 있을 경우, 다음과 같이도 실행 가능하다.
+
+```bash
+python -m script
+```
+
+왜냐하면, 위와 같이 실행시키면 현재..  
+어라 좀 헷갈린다. -m option은 sys.path에서 script라는 모듈을 찾을 건데,  
+script라는 모듈을 찾은 뒤에야 해당 스크립트를 실행시키면서 sys.path에 script.py가 위치한 곳이 등록이 될 것이기 때문이다.  
+조금 더 deep dive해서 알아 봐야겠다.
 
 ### Python typing
 
@@ -141,26 +180,3 @@ pylint의 경우에는 폴더를 지정 가능하지만 \_\_init\_\_.py 파일�
 
 test_*.py or \*_test.py in the current directory and its subdirectories.  
 라고 한다.
-
-### -m 실행 옵션과 \_\_name\_\_이란?
-
-[-m 실행 옵션과 \_\_name\_\_](https://jins-sw.tistory.com/22)
-
-#### \_\_name\_\_
-
-python script.py 처럼 바로 실행시키면 \_\_name\_\_이 \_\_main\_\_ 이 되고,  
-다른 곳에서 import script 이렇게 import 하면 \_\_name\_\_이 script가 된다.
-
-#### -m option
-
--m option은 sys.path에서 해당 module을 찾아서 실행을 시키라는 의미이다.  
-따라서 현재 폴더에 script.py가 있을 경우, 다음과 같이도 실행 가능하다.
-
-```bash
-python -m script
-```
-
-왜냐하면, 위와 같이 실행시키면 현재..  
-어라 좀 헷갈린다. -m option은 sys.path에서 script라는 모듈을 찾을 건데,  
-script라는 모듈을 찾은 뒤에야 해당 스크립트를 실행시키면서 sys.path에 script.py가 위치한 곳이 등록이 될 것이기 때문이다.  
-조금 더 deep dive해서 알아 봐야겠다.

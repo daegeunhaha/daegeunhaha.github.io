@@ -16,6 +16,7 @@ python 코드를 짜다보면 typing 때문이건, 그냥이건 circular import�
 
 1. dynamic import
     * 상단 import section에서 import 하는 것이 아니라, 실제 필요할 때 import 하는 방법이 있다.
+    * 이 방법을 이용하였더니, pylint에서 import-outside-toplevel warning을 내었다. 해결하는 좋은 방법이 있을 지 고민 중이다.
 2. typing 꼼수
     * typing시 실제 class 대신 class의 string을 사용할 수 있다. mypy 사용 시에 type checking이 가능하도록 한다.
 
@@ -167,7 +168,7 @@ subClass: SubClass = test() # wrong
 subClass: SubClass = cast(SubClass, test()) # good
 ```
 
-### mypy, pylint
+### python code style 관련 - mypy, pylint 등
 
 mypy는 python에서 static type 검사를 해주며,  
 pylint는 PEP-8 같은 coding style 가이드를 따랐는지를 알려준다.
@@ -175,6 +176,23 @@ pylint는 PEP-8 같은 coding style 가이드를 따랐는지를 알려준다.
 두 모듈 모두 pip install mypy, pip install pylint를 통해 설치 가능하며,  
 mypy는 특정 파일, 또는 폴더에 대해 검사가 가능하며  
 pylint의 경우에는 폴더를 지정 가능하지만 \_\_init\_\_.py 파일이 있어야 해당 폴더에 대한 검사가 가능하다.
+
+나는 pylint + isort로 error checking과 pep8 coding style 준수 및 import 순서 정렬을 하기로 하였고,  
+pyright을 이용하여 static type checking을 하기로 하였다.  
+마지막으로, black을 이용하여 code style을 체크하기로 하였다.  
+
+위 도구들 중 pylint는 pylintrc, pyright은 pyrightconfig.json 파일을 이용해 설정이 가능하며,  
+isort는 따로 설정이 필요하지 않고, black은 python version 및 line length를 설정할 수 있다고 하였으나 아직 설정을 하지 않았다.  
+추가적으로, 모든 설정 파일을 toml 안에 넣을 수 있다고 해서 살펴보고 있다.  
+이건, setup.py 및 setup.cfg 등 python에서 package를 만드는 법과 역사에도 관련이 있어 보인다.  
+[setup.py 멈춰!](https://tech.buzzvil.com/blog/setup.py-%EB%A9%88%EC%B6%B0/)
+[Understanding setup.py, setup.cfg and pyproject.toml in Python](https://ianhopkinson.org.uk/2022/02/understanding-setup-py-setup-cfg-and-pyproject-toml-in-python/)
+
+구체적인 configuration 설정법은 다음을 참고하면 좋을 것 같다.
+
+pylint official docs: [https://pylint.readthedocs.io/en/latest/index.html#](https://pylint.readthedocs.io/en/latest/index.html#)
+pylint google best-effort: [https://github.com/google/styleguide/blob/gh-pages/pylintrc](https://github.com/google/styleguide/blob/gh-pages/pylintrc)
+pyright configuration: [https://github.com/Microsoft/pyright/blob/main/docs/configuration.md](https://github.com/Microsoft/pyright/blob/main/docs/configuration.md)
 
 ### pytest test 함수 명
 

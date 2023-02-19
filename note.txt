@@ -1,0 +1,5 @@
+현재 풀어야 할 숙제
+
+- import-outside-toplevel problem with circular import, 현재 내 구현에는 어떤 문제가 있는가?
+- python project setting 문제. setup.py, setup.cfg, .toml 파일은 대체 무엇인가?
+- 내가 적용해둔 tool의 configuration을 vscode에도 동기화하여 적용하려면 어떻게 해야 하는가?

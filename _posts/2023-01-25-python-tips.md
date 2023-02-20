@@ -184,9 +184,6 @@ pyright을 이용하여 static type checking을 하기로 하였다.
 위 도구들 중 pylint는 pylintrc, pyright은 pyrightconfig.json 파일을 이용해 설정이 가능하며,  
 isort는 따로 설정이 필요하지 않고, black은 python version 및 line length를 설정할 수 있다고 하였으나 아직 설정을 하지 않았다.  
 추가적으로, 모든 설정 파일을 toml 안에 넣을 수 있다고 해서 살펴보고 있다.  
-이건, setup.py 및 setup.cfg 등 python에서 package를 만드는 법과 역사에도 관련이 있어 보인다.  
-[setup.py 멈춰!](https://tech.buzzvil.com/blog/setup.py-%EB%A9%88%EC%B6%B0/)
-[Understanding setup.py, setup.cfg and pyproject.toml in Python](https://ianhopkinson.org.uk/2022/02/understanding-setup-py-setup-cfg-and-pyproject-toml-in-python/)
 
 구체적인 configuration 설정법은 다음을 참고하면 좋을 것 같다.
 
@@ -198,3 +195,13 @@ pyright configuration: [https://github.com/Microsoft/pyright/blob/main/docs/conf
 
 test_*.py or \*_test.py in the current directory and its subdirectories.  
 라고 한다.
+
+### python packaging
+
+[파이썬 패키징의 과거, 현재, 그리고 미래](https://ryanking13.github.io/2021/07/11/python-packaging.html)
+[setup.py 멈춰!](https://tech.buzzvil.com/blog/setup.py-%EB%A9%88%EC%B6%B0/)
+[Understanding setup.py, setup.cfg and pyproject.toml in Python](https://ianhopkinson.org.uk/2022/02/understanding-setup-py-setup-cfg-and-pyproject-toml-in-python/)
+
+나는 packaging을 할 일은 없어서 해당 아티클이 와닿지는 않지만,  
+setup.py 대신 pyproject.toml을 사용하며, packaging build 에는 setuptools(외 다른 것도 있음), package install에는 pip를 사용하면  
+그게 거의 최신 패키징 방법인 듯 하다.

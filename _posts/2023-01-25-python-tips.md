@@ -191,6 +191,19 @@ pylint official docs: [https://pylint.readthedocs.io/en/latest/index.html#](http
 pylint google best-effort: [https://github.com/google/styleguide/blob/gh-pages/pylintrc](https://github.com/google/styleguide/blob/gh-pages/pylintrc)
 pyright configuration: [https://github.com/Microsoft/pyright/blob/main/docs/configuration.md](https://github.com/Microsoft/pyright/blob/main/docs/configuration.md)
 
+모든 configuration을 따로 할 수는 있지만, pyproject.toml에 같이 설정하는 것이 관리해야 할 파일을 줄일 수 있어 효율적인 것 같다.  
+아래는 내가 사용하는 tool들에 대해서, pyproject.toml에 어떻게 설정하면 되는지 알려주는 문서 링크들이다.
+
+* [pylint](https://pylint.pycqa.org/en/latest/user_guide/configuration/index.html)
+  * pylint의 경우, pyproject.toml 설정법이 따로 나와 있지는 않다. 하지만, 아래 command를 통해 가능한 모든 설정을 알 수 있다.
+  * pylint --generate-toml-config > xxx.toml
+* [isort](https://pycqa.github.io/isort/docs/configuration/config_files.html)
+  * isort의 경우, black과 꽤 밀접한 연관성을 가지고 있는 것 같다.
+* [pyright](https://github.com/microsoft/pyright/blob/main/docs/configuration.md)
+* [black](https://ichard26-testblackdocs.readthedocs.io/en/refactor_docs/pyproject_toml.html)
+  * [some_more](https://github.com/psf/black/blob/main/pyproject.toml)
+* [pytest](https://docs.pytest.org/en/7.2.x/reference/customize.html)
+
 ### pytest test 함수 명
 
 test_*.py or \*_test.py in the current directory and its subdirectories.  
@@ -205,3 +218,20 @@ test_*.py or \*_test.py in the current directory and its subdirectories.
 나는 packaging을 할 일은 없어서 해당 아티클이 와닿지는 않지만,  
 setup.py 대신 pyproject.toml을 사용하며, packaging build 에는 setuptools(외 다른 것도 있음), package install에는 pip를 사용하면  
 그게 거의 최신 패키징 방법인 듯 하다.
+
+### python package 구조
+
+나는 아래와 같이 python package를 구성한다.
+
+my-python-app/
+├─ src/
+│  ├─ main.py
+│  ├─ module1.py
+│  ├─ another_package/
+│  │  ├─ module2.py
+│  ├─ tests/
+│  │  ├─ test_xxx.py
+│  │  ├─ test_another_package/
+│  │  │  ├─ test_module2.py
+├─ pyproject.toml
+├─ Makefile

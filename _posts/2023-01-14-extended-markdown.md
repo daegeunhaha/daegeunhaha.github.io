@@ -31,3 +31,31 @@ code block 전후로 \`\`\`를 추가하거나, \~\~\~를 추가하면 된다.
   "age": 25
 }
 ```
+
+### 04. Fenced code block inside a list
+
+code block의 indentation을 조금 더 넣으면 된다.
+
+* 1 element of unordered list
+  * 1-1 element of unordered list
+
+    ```python
+    from unittest import mock
+
+    def main():
+      print("this code block indented with 4 spaces")
+    ```
+
+  * 1-2 element of unordered list
+
+1. 1 element of ordered list
+    1. 1-1 element of ordered list
+
+        ```python
+        from unittest import mock
+
+        def main():
+          print("this code block indented with 8 spaces")
+        ```
+
+    2. 1-2 element of ordered list

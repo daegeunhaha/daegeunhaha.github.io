@@ -59,3 +59,11 @@ code block의 indentation을 조금 더 넣으면 된다.
         ```
 
     2. 1-2 element of ordered list
+
+### 05. Inline code syntax
+
+backtick 을 양쪽에 넣으면 된다.
+
+이런 식이 된다. `code이에요~!`
+
+code syntax highlight의 경우, github이나 특별한 extension이 있어야 하는 것 같다.
